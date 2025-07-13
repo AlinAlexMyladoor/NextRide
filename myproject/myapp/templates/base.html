@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NextRide{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'static/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+
+
+<style>
+  :root {
+    --primary-color: #2563eb;      /* Vibrant blue */
+    --secondary-color: #1e40af;    /* Darker blue */
+    --accent-color: #3b82f6;       /* Light blue */
+    --light-color: #f8fafc;        /* Off-white */
+    --dark-color: #1e293b;         /* Dark slate */
+    --text-color: #334155;         /* Dark gray */
+    --text-light: #64748b;         /* Medium gray */
+  }
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Ensure the page content doesn't get hidden behind the fixed navbar */
+.container {
+  margin-top: 80px; /* adjust depending on navbar height */
+}
+
+  /* Base Styles */
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    flex: 1;
+  }
+
+  /* Navigation */
+  nav {
+    background-color: var(--dark-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Changed from flex-start to flex-end */
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  nav ul li {
+    margin: 0;
+    position: relative;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 1.25rem 1.5rem;
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light-color);
+  }
+
+  nav ul li a.active {
+    background-color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  nav ul li a.active:after {
+    content: '';
+    position: absolute;
+    bottom: 17px;;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background-color: var(--light-color);
+    border-radius: 3px 3px 0 0;
+  }
+
+  /* Logo and Brand */
+  .brand {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    margin-right: auto; /* Pushes everything else to the right */
+  }
+
+  .brand-logo {
+    height: 60px; /* Increased from 40px to 50px */
+    width: auto;
+    margin-right: 12px;
+  }
+
+  .brand-name {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* Navigation Links Container */
+  .nav-links {
+    display: flex;
+  }
+
+
+  /* Responsive Navigation */
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .brand {
+      justify-content: center;
+      padding: 1rem;
+      margin-right: 0;
+    }
+
+    .nav-links {
+      flex-direction: column;
+    }
+
+    nav ul li a {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav ul li a.active:after {
+      width: 100%;
+      left: 0;
+      transform: none;
+    }
+  }
+</style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <!-- Brand Logo and Name -->
+            <li class="brand">
+               
+                <img src="{% static 'images/logo.png' %}" alt="NextRide Logo" class="brand-logo">
+                <span class="brand-name">NextRide</span>
+            </li>
+            
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <!-- Admin Navigation -->
+                        <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                        <li><a href="{% url 'view_users' %}" class="{% if 'view_users' in request.path %}active{% endif %}">View Users</a></li>
+                        <li><a href="{% url 'edit_bus' %}" class="{% if 'edit_bus' in request.path %}active{% endif %}">Edit Bus</a></li>
+                        <li><a href="{% url 'bus_ticket' %}" class="{% if 'bus_ticket' in request.path %}active{% endif %}">Bus Ticket</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <!-- Logged-in User Navigation -->
+                        <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                        <li><a href="{% url 'about' %}" class="{% if 'about' in request.path %}active{% endif %}">About</a></li>
+                        <li><a href="{% url 'bus_ticket' %}" class="{% if 'bus_ticket' in request.path %}active{% endif %}">Bus Ticket</a></li>
+                        <li><a href="{% url 'my_bookings' %}" class="{% if 'my_bookings' in request.path %}active{% endif %}">My Bookings</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% endif %}
+                {% else %}
+                    <!-- Guest Navigation -->
+                    <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="{% url 'bus_ticket' %}" class="{% if 'bus_ticket' in request.path %}active{% endif %}">Bus Ticket</a></li>
+                    <li><a href="{% url 'login' %}" class="{% if 'login' in request.path %}active{% endif %}">Login</a></li>
+                    <li><a href="{% url 'register' %}" class="{% if 'register' in request.path %}active{% endif %}">Register</a></li>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- Before </body> -->
+
+
+
+    {% include 'footer.html' %}
+</body>
+</html>

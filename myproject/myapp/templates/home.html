@@ -1,0 +1,533 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+ :root {
+  --primary-color: #022b3a;
+  --secondary-color: #1f7a8c;
+  --accent-color: #bfdbf7;
+  --light-accent: #e1e5f2;
+  --light-color: #ffffff;
+  --text-color: #333333;
+  --text-light: #6c757d;
+}
+
+/* Base Styles */
+body, html {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background-color: #f8f9fa;
+  line-height: 1.6;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+  padding: 0;
+}
+
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+section {
+  padding: 0;
+}
+
+
+/* Section Padding */
+
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  display: none;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+/* Welcome Section */
+.welcome-section {
+  margin: 2rem 0 3rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: url("{% static 'images/welcome.jpg' %}") center/cover no-repeat;
+  color: var(--light-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(2, 43, 58, 0.5);
+  z-index: -1;
+  border-radius: 12px;
+}
+.welcome-section h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-section .lead {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0 auto 1.5rem;
+  max-width: 900px;
+}
+
+.welcome-section h2,
+.welcome-section p,
+.welcome-section .lead {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 6rem 0 8rem;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  margin-bottom: 1.5rem;
+}
+
+.hero-section p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-lg {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+
+/* Feature Cards */
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 100%%;
+  width: 100%;
+  border: none;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+  font-size: 3.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  width: 80px;
+  height: 80px;
+  background: rgba(191, 219, 247, 0.2);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-card h4 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  color: var(--text-light);
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 5rem 0;
+  text-align: center;
+  background-color: var(--light-accent);
+  border-radius: 12px;
+  margin: 4rem 0;
+}
+
+.cta-section .lead {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+.features-section {
+  padding-left: 4vw;
+  padding-right: 4vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  background-color: #f8f9fa;
+  padding: 4rem 0;
+  text-align: center;
+  border-radius: 12px;
+  margin: 3rem 0;
+}
+
+.newsletter-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-section p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  body { padding-top: 70px; }
+  .hero-section { padding: 4rem 0 6rem; }
+  .hero-section h1 { font-size: 2.5rem; }
+  .hero-section p { font-size: 1.25rem; }
+}
+
+@media (max-width: 768px) {
+  body { padding-top: 60px; }
+  .hero-section { padding: 3rem 0 5rem; }
+  .hero-section h1 { font-size: 2rem; }
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+/* CTA Section Enhancements */
+.cta-section h2,
+.cta-section .lead {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2vw;
+}
+
+/* Features Section Enhancements */
+.features-section .card-body {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.features-section h2 {
+  padding: 0 2vw;
+}
+
+.features-section .feature-card p {
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+/* Newsletter Section Enhancements */
+.newsletter-section h2,
+.newsletter-section p {
+  padding: 0 2vw;
+}
+
+.newsletter-section form input,
+.newsletter-section form button {
+  min-height: 48px;
+}
+
+@media (max-width: 576px) {
+  .hero-section h1 { font-size: 1.75rem; }
+  .welcome-section h2 { font-size: 1.8rem; }
+}
+.newsletter-input {
+  max-width: 300px;
+  height: 46px;
+  font-size: 1rem;
+}
+
+.welcome-section p {
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9); /* lighter white for clarity over background */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* soft shadow for readability */
+  margin-top: 0.5rem;
+}
+.scroll-down-btn {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--light-color);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+.scroll-down-btn:hover {
+  opacity: 1;
+}
+
+/* Optional bounce animation */
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -8px); }
+}
+
+.newsletter-section {
+  background: linear-gradient(to right, #f3f7fa, #e1e5f2); /* Matches features-section */
+  padding: 5rem 2rem;
+  border-radius: 12px;
+  margin: 4rem auto;
+  text-align: center;
+}
+.newsletter-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.newsletter-section p {
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+</style>
+
+<div class="container">
+  <!-- Welcome Section -->
+  <section class="welcome-section"  data-aos="slide-up">
+    {% if user.is_authenticated %}
+      <h2>Welcome, {{ user.first_name|default:user.username }}! 👋</h2>
+      <p class="text-muted">We're glad to see you again!</p>
+    {% else %}
+      <h2>Welcome to NextRide! 👋</h2>
+     
+    {% endif %}
+     <p class="lead">NextRide is your trusted companion for comfortable, affordable and reliable bus travel across India. From instant booking to live bus tracking — we're redefining how India travels.</p>
+    <a href="#cta-section" class="scroll-down-btn">
+  <i class="fas fa-chevron-down"></i> <!-- Font Awesome down arrow -->
+</a>
+
+  </section>
+
+  <section id="cta-section" class="cta-section">
+    {% if user.is_authenticated %}
+      <h2>Ready for your next trip, {{ user.first_name|default:user.username }}?</h2>
+      <p class="lead">Book your tickets now and enjoy exclusive member benefits.</p>
+      <div class="d-flex justify-content-center flex-wrap">
+        <a href="{% url 'bus_ticket' %}" class="btn btn-primary btn-lg mx-2 my-1">
+          <i class="fas fa-ticket-alt me-2"></i> Book a Ticket
+        </a>
+        <a href="{% url 'my_bookings' %}" class="btn btn-outline-primary btn-lg mx-2 my-1">
+          <i class="fas fa-clipboard-list me-2"></i> My Bookings
+        </a>
+      </div>
+    {% else %}
+    
+      <h2>Join 1 Million+ Happy Travelers</h2>
+      <p class="lead">Sign up now to enjoy exclusive benefits, faster bookings, and special discounts.</p>
+      <div class="d-flex justify-content-center flex-wrap">
+        <a href="{% url 'register' %}" class="btn btn-primary btn-lg mx-2 my-1">
+          <i class="fas fa-user-plus me-2"></i> Register Now
+        </a>
+        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg mx-2 my-1">
+          <i class="fas fa-sign-in-alt me-2"></i> Login
+        </a>
+      </div>
+    {% endif %}
+  </section>
+  <section class="features-section mb-5">
+  <h2 class="text-center mb-5">Why Choose NextRide?</h2>
+  <div class="row justify-content-center">
+    <!-- Instant Booking -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 shadow-sm border-0 feature-card">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-bolt fa-2x"  style="color: #022b3a;"></i>
+          </div>
+          <h4 class="card-title">Instant Booking</h4>
+          <p class="card-text">Book your bus tickets in less than a minute with our streamlined process. Real-time availability and instant confirmation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Safe Travel -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 shadow-sm border-0 feature-card">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-shield-alt fa-2x"  style="color: #022b3a;"></i>
+          </div>
+          <h4 class="card-title">Safe Travel</h4>
+          <p class="card-text">Verified operators, sanitized buses, and emergency support. Live tracking and SOS features for complete peace of mind.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Best Prices -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 shadow-sm border-0 feature-card">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-percentage fa-2x"  style="color: #022b3a;"></i>
+          </div>
+          <h4 class="card-title">Best Prices</h4>
+          <p class="card-text">Guaranteed lowest prices with exclusive discounts. Price match promise and special deals for frequent travelers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eco-Friendly Buses -->
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 shadow-sm border-0 feature-card">
+        <div class="card-body text-center">
+          <div class="feature-icon mb-3">
+            <i class="fas fa-leaf fa-2x"  style="color: #022b3a;"></i>
+          </div>
+          <h4 class="card-title">Eco-Friendly Buses</h4>
+          <p class="card-text">Choose greener options with our low-emission and electric buses. Travel smart, save fuel, and reduce carbon footprint.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  
+
+  <!-- Newsletter Section -->
+   
+  <section class="newsletter-section">
+    <h2>📰 Subscribe to Our Travel Newsletter</h2>
+    <p>Be the first to know about exclusive discounts, travel tips, and new routes!</p>
+    <form method="POST" action="{% url 'subscribe_newsletter' %}" class="d-flex justify-content-center flex-wrap gap-3">
+  {% csrf_token %}
+  <input type="email" name="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+  <button type="submit" class="btn btn-primary">Subscribe</button>
+</form>
+
+  </section>
+
+</div>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+{% endblock %}

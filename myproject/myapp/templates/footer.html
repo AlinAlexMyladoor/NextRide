@@ -1,0 +1,308 @@
+{% load static %}
+{% load tz %}
+
+<style>
+  
+  /* Footer Variables */
+  :root {
+    --footer-bg: #1e293b;         /* Dark slate background */
+    --footer-text: #ffffff;       /* Pure white text color */
+    --footer-accent: #3b82f6;     /* Accent blue color */
+    --footer-hover: #60a5fa;      /* Lighter blue for hover */
+    --footer-divider: #334155;    /* Divider color */
+  }
+
+  /* Footer Base Styles */
+  footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .footer-content {
+    padding: 3rem 0;
+  }
+main {
+  flex: 1; /* Pushes footer to the bottom without adding space */
+}
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-col {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 1rem;
+  }
+
+  /* Footer Columns */
+  .footer-column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-column h5 {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  /* Brand Column */
+  .brand-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-logo img {
+    height: 40px;
+    width: auto;
+    margin-right: 12px;
+  }
+  
+  .footer-logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .brand-description {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  /* Social Links */
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto; /* Pushes to bottom */
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-links a:hover {
+    background-color: var(--footer-accent);
+    transform: translateY(-3px);
+  }
+
+  /* Quick Links */
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 1rem;
+  }
+
+  .footer-column ul li a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 1rem;
+  }
+
+  .footer-column ul li a:hover {
+    color: var(--footer-hover);
+    transform: translateX(5px);
+  }
+
+  /* Contact Info */
+  .contact-info {
+    margin-top: 0.5rem;
+  }
+
+  .contact-info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+  }
+
+  .contact-info i {
+    color: var(--footer-accent);
+    margin-right: 12px;
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 1.25rem 0;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--footer-divider);
+    text-align: center;
+    margin-top: 0;
+  }
+
+  .footer-bottom a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    margin: 0 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .footer-bottom a:hover {
+    color: var(--footer-hover);
+    text-decoration: underline;
+  }
+.footer-content {
+  padding: 2.5rem 0; /* Reduced vertical padding */
+}
+
+.footer-container {
+  padding: 0 1rem; /* Less horizontal space */
+}
+
+.footer-row {
+  gap: 1rem; /* Reduced column spacing */
+}
+
+.footer-bottom {
+  padding: 0.5rem 0; /* Compact bottom section */
+  margin-top: 1rem;
+}
+
+/* Optional: shrink column padding */
+.footer-col {
+  padding: 0 0.5rem;
+}
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .footer-content {
+      padding: 2rem 0;
+    }
+    
+    .footer-col {
+      flex: 0 0 100%;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-column {
+      align-items: center;
+    }
+    
+    .footer-column ul li a:hover {
+      transform: none;
+    }
+    
+    .social-links {
+      justify-content: center;
+    }
+    
+    .contact-info p {
+      justify-content: center;
+    }
+    
+    .footer-logo {
+      justify-content: center;
+    }
+  }
+</style>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-container">
+      <div class="footer-row">
+        <!-- Brand Column -->
+        <div class="footer-col brand-column">
+          <div class="footer-logo">
+            <img src="{% static 'images/logo.png' %}" alt="NextRide Logo">
+            <span class="footer-logo-text">NextRide</span>
+          </div>
+          <p class="brand-description">
+            Your trusted partner for comfortable and reliable bus travel across India.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links Column -->
+        <div class="footer-col">
+          <div class="footer-column">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              <li><a href="{% url 'bus_ticket' %}">Book Tickets</a></li>
+              {% if not user.is_authenticated %}
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+              {% else %}
+                <li><a href="{% url 'my_bookings' %}">My Bookings</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contact Column -->
+        <div class="footer-col">
+          <div class="footer-column">
+            <h5>Contact Us</h5>
+            <div class="contact-info">
+              <p><i class="fas fa-map-marker-alt"></i> 123 Transit Avenue, Kerala, India</p>
+              <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+              <p><i class="fas fa-envelope"></i> info@nextride.com</p>
+              <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; {% now "Y" %} NextRide. All rights reserved. | 
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> | 
+    <a href="#">FAQ</a>
+  </div>
+</footer>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
