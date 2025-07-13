@@ -1,0 +1,62 @@
+<!-- footer.html -->
+{% load static %}
+{% load tz %}
+
+
+<footer>
+  <div class="footer-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+          <div class="footer-column">
+           
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+          <div class="footer-column">
+            <h5>Quick Links</h5>
+            <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'bus_ticket' %}">Bus Tickets</a></li>
+              <li><a href="{% url 'about' %}">About Us</a></li>
+              {% if not user.is_authenticated %}
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+              {% else %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+          <div class="footer-column">
+            <h5>Contact Us</h5>
+            <div class="contact-info">
+              <p><i class="fas fa-map-marker-alt"></i> 123 Transit Avenue, City Center, Country</p>
+              <p><i class="fas fa-phone-alt"></i> +1 (234) 567-8900</p>
+              <p><i class="fas fa-envelope"></i> info@nextride.com</p>
+              <p><i class="fas fa-clock"></i> Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-6PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom text-center">
+    &copy; 2006 NextRide. All rights reserved. | 
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a>
+  </div>
+</footer>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
