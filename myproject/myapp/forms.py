@@ -1,20 +1,33 @@
 from django import forms
-from .models import City
+from .models import Register
+
+
+
+
+
+
+
+class RegisterForm(forms.ModelForm):
+    
+    class Meta:
+        
+        model = Register
+        fields = ['first_name','last_name','username','email','password','contact']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+    def clean_contact(self):
+        contact = self.cleaned_data.get('contact')
+        if not contact.isdigit():
+            raise forms.ValidationError("Contact number must contain digits only.")
+        if len(contact) != 10:
+            raise forms.ValidationError("Contact number must be exactly 10 digits.")
+        if contact.startswith('0'):
+            raise forms.ValidationError("Contact number should not start with 0.")
+        return contact
+
+  
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
+    username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
-
-class SearchForm(forms.Form):
-    source = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Select Source")
-    destination = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Select Destination")
-    travel_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        source = cleaned_data.get('source')
-        destination = cleaned_data.get('destination')
-        
-        if source and destination and source == destination:
-            raise forms.ValidationError("Source and destination cannot be the same.")
-        return cleaned_data

@@ -413,7 +413,7 @@ p {
   <section class="welcome-section"  data-aos="slide-up">
     {% if user.is_authenticated %}
       <h2>Welcome, {{ user.first_name|default:user.username }}! 👋</h2>
-      <p class="text-muted">We're glad to see you again!</p>
+      
     {% else %}
       <h2>Welcome to NextRide! 👋</h2>
      

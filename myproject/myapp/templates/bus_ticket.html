@@ -1,0 +1,414 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  /* Color Variables */
+  :root {
+    --primary-color: #022b3a;    /* Deep teal */
+    --secondary-color: #1f7a8c;  /* Medium teal */
+    --accent-color: #bfdbf7;     /* Light blue */
+    --light-accent: #e1e5f2;     /* Very light blue */
+    --light-color: #ffffff;      /* White */
+    --text-color: #333333;       /* Dark gray for text */
+    --text-light: #6c757d;      /* Medium gray */
+  }
+
+  /* Base Styles */
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+  }
+
+  h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--secondary-color);
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+    color: var(--text-color);
+  }
+
+  /* Hero Section */
+  .hero-section {
+    
+    color: var(--primary-color);
+    padding: 6rem 0 8rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+
+  .hero-section .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-section h1 {
+    color: white;
+    font-size: 3rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-section p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Search Card */
+  .search-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    margin-top: -4rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  .search-card .form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .search-card .form-select,
+  .search-card .form-control {
+    height: 50px;
+    border: 1px solid var(--light-accent);
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .search-card .form-select:focus,
+  .search-card .form-control:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.25rem rgba(31, 122, 140, 0.25);
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .btn-outline-primary {
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    background: transparent;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+ 
+
+  /* Popular Routes */
+  .popular-routes {
+    background-color: var(--light-accent);
+    padding: 4rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 4rem;
+  }
+
+  .popular-routes h2 {
+    text-align: center;
+  }
+
+  .popular-routes h2:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .route-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.75rem;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--secondary-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    height: 100%;
+  }
+
+  .route-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  .route-card h5 {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .route-card p {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .hero-section {
+      padding: 4rem 0 6rem;
+    }
+    
+    .hero-section h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-section p {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding: 3rem 0 5rem;
+    }
+    
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+    
+    .search-card {
+      margin-top: 0;
+      padding: 1.5rem;
+    }
+    
+    .feature-card,
+    .route-card,
+    .stats-card {
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-section {
+      padding: 3rem 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero-section h1 {
+      font-size: 1.75rem;
+    }
+    
+    .btn-lg {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+</style>
+<!-- Bus Search Results -->
+{% if bus_info %}
+  <section class="py-5">
+    <h2 class="text-center">Available Buses</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+      {% for entry in bus_info %}
+        <div class="col">
+          <div class="route-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <h5>{{ entry.schedule.bus.name }}</h5>
+              <p>Travel Date: {{ entry.schedule.travel_date }}</p>
+              <p>Available Seats: {{ entry.available_seats|length }}</p>
+              <form action="{% url 'book_seat' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="schedule_id" value="{{ entry.schedule.id }}">
+                <label for="seat_{{ entry.schedule.id }}" class="form-label">Select Seat</label>
+                <select class="form-select mb-3" name="seat_number" id="seat_{{ entry.schedule.id }}" required>
+                  {% for seat in entry.available_seats %}
+                    <option value="{{ seat }}">Seat {{ seat }}</option>
+                  {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary w-100">Book Seat</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+<!-- Full-Width Responsive Layout -->
+<div class="container-fluid px-4 px-md-5">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="text-center">
+      <h1>Travel Smarter with NextRide 🚌</h1>
+      <p class="lead">Book bus tickets across India with just a few clicks.<br> Safe, reliable, and hassle-free!</p>
+      
+      <!-- Search Form -->
+      <div class="search-card">
+        <form action="{% url 'bus_ticket' %}" method="GET">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label for="from" class="form-label">From</label>
+              <select class="form-select" id="from" name="from" required>
+                <option value="" selected disabled>Select City</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Pune">Pune</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="to" class="form-label">To</label>
+              <select class="form-select" id="to" name="to" required>
+                <option value="" selected disabled>Select City</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Pune">Pune</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="date" class="form-label">Travel Date</label>
+              <input type="date" class="form-control" id="date" name="date" required min="{{ today|date:'Y-m-d' }}">
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-search me-2"></i> Search Buses
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Routes -->
+  <section class="popular-routes">
+    <h2>Popular Bus Routes</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="route-card h-100 d-flex flex-column justify-content-between">
+          <div>
+            <h5>Delhi to Jaipur</h5>
+            <p>Starting from ₹499</p>
+            <p><small>Duration: 6–7 hours</small></p>
+          </div>
+          <a href="{% url 'bus_ticket' %}?from=Delhi&to=Jaipur" class="btn btn-outline-primary mt-auto">
+            <i class="fas fa-ticket-alt me-2"></i> Book Now
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="route-card h-100 d-flex flex-column justify-content-between">
+          <div>
+            <h5>Mumbai to Pune</h5>
+            <p>Starting from ₹399</p>
+            <p><small>Duration: 3–4 hours</small></p>
+          </div>
+          <a href="{% url 'bus_ticket' %}?from=Mumbai&to=Pune" class="btn btn-outline-primary mt-auto">
+            <i class="fas fa-ticket-alt me-2"></i> Book Now
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="route-card h-100 d-flex flex-column justify-content-between">
+          <div>
+            <h5>Bangalore to Chennai</h5>
+            <p>Starting from ₹599</p>
+            <p><small>Duration: 5–6 hours</small></p>
+          </div>
+          <a href="{% url 'bus_ticket' %}?from=Bangalore&to=Chennai" class="btn btn-outline-primary mt-auto">
+            <i class="fas fa-ticket-alt me-2"></i> Book Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

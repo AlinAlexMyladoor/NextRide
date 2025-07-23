@@ -93,7 +93,7 @@ nav {
   }
 
   nav ul li a.active {
-    background-color: var(--primary-color);
+  
     font-weight: 600;
   }
 
@@ -182,6 +182,7 @@ nav {
                     {% if user.is_staff %}
                         <!-- Admin Navigation -->
                         <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                        
                         <li><a href="{% url 'view_users' %}" class="{% if 'view_users' in request.path %}active{% endif %}">View Users</a></li>
                         <li><a href="{% url 'edit_bus' %}" class="{% if 'edit_bus' in request.path %}active{% endif %}">Edit Bus</a></li>
                         <li><a href="{% url 'bus_ticket' %}" class="{% if 'bus_ticket' in request.path %}active{% endif %}">Bus Ticket</a></li>
@@ -197,6 +198,7 @@ nav {
                 {% else %}
                     <!-- Guest Navigation -->
                     <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="{% url 'about' %}" class="{% if 'about' in request.path %}active{% endif %}">About</a></li>
                     <li><a href="{% url 'bus_ticket' %}" class="{% if 'bus_ticket' in request.path %}active{% endif %}">Bus Ticket</a></li>
                     <li><a href="{% url 'login' %}" class="{% if 'login' in request.path %}active{% endif %}">Login</a></li>
                     <li><a href="{% url 'register' %}" class="{% if 'register' in request.path %}active{% endif %}">Register</a></li>

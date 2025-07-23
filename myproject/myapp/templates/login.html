@@ -1,27 +1,233 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="max-w-md mx-auto glass-card p-8">
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Login to Your Account</h2>
-    {% if error %}
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {{ error }}
+
+
+<style>
+    :root {
+        --primary-color: #6c5ce7;
+        --secondary-color: #a29bfe;
+        --accent-color: #fd79a8;
+        --dark-bg: #1a1a2e;
+        --darker-bg: #16213e;
+        --text-light: #f8f9fa;
+        --text-muted: #adb5bd;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        padding: 40px 20px;
+        margin-top: 80px; /* Added to account for fixed header */
+    }
+
+    .login-wrapper {
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+    }
+
+    .login-header {
+        margin-bottom: 30px;
+    }
+
+    .login-title {
+        color: var(--text-light);
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .login-subtitle {
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+
+    .login-form {
+        background-color: var(--darker-bg);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        border: 1px solid rgba(108, 92, 231, 0.3);
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--secondary-color);
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 14px 16px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: var(--text-light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.3);
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    }
+
+    .form-footer {
+        margin-top: 20px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .form-footer a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .form-footer a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Alert messages */
+    .alert {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        padding: 15px 20px;
+        background-color: #f44336;
+        color: white;
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        animation: slideIn 0.5s, fadeOut 0.5s 2.5s forwards;
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(100%); }
+        to { transform: translateX(0); }
+    }
+
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .login-container {
+            margin-top: 60px;
+            padding: 20px;
+        }
+        
+        .login-form {
+            padding: 30px;
+        }
+        
+        .login-title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .login-form {
+            padding: 25px 20px;
+        }
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-wrapper">
+        <div class="login-header">
+            <h1 class="login-title">Welcome Back</h1>
+            <p class="login-subtitle">Sign in to your account</p>
         </div>
-    {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Username</label>
-            {{ form.username }}
-        </div>
-        <div class="mb-6">
-            <label class="block text-gray-700 mb-2">Password</label>
-            {{ form.password }}
-        </div>
-        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition mb-4">
-            Login
-        </button>
-        <p class="text-center text-gray-600">Don't have an account? <a href="#" class="text-blue-600 hover:underline">Register here</a></p>
-    </form>
+        
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" id="id_password" required>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                Sign In
+            </button>
+            
+            <div class="form-footer">
+                Don't have an account? <a href="/register">Register here</a>
+            </div>
+        </form>
+    </div>
 </div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<script>
+    // Auto-hide alerts after 3 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        });
+    });
+</script>
 {% endblock %}

@@ -3,6 +3,7 @@
 
 {% block content %}
 <style>
+
   /* Color Variables */
   :root {
     --primary-color: #022b3a;    /* Deep teal */
@@ -46,17 +47,14 @@
     position: relative;
     display: inline-block;
   }
-
-  h2:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--secondary-color);
-  }
-
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+}
   .lead {
     font-size: 1.25rem;
     font-weight: 300;
@@ -110,39 +108,7 @@
     margin-right: auto;
   }
 
-  /* Search Card */
-  .search-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2.5rem;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-    margin-top: -4rem;
-    position: relative;
-    z-index: 10;
-  }
 
-  .search-card .form-label {
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    display: block;
-  }
-
-  .search-card .form-select,
-  .search-card .form-control {
-    height: 50px;
-    border: 1px solid var(--light-accent);
-    border-radius: 8px;
-    padding: 0.75rem 1.25rem;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .search-card .form-select:focus,
-  .search-card .form-control:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 0.25rem rgba(31, 122, 140, 0.25);
-  }
 
   /* Buttons */
   .btn {
@@ -192,90 +158,7 @@
     font-size: 0.875rem;
   }
 
-  /* Feature Cards */
-  .feature-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2.5rem 2rem;
-    height: 100%;
-    transition: all 0.3s ease;
-    border: none;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
 
-  .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-  }
-
-  .feature-icon {
-    font-size: 3.5rem;
-    color: var(--secondary-color);
-    margin-bottom: 1.5rem;
-    display: inline-flex;
-    width: 80px;
-    height: 80px;
-    background: rgba(191, 219, 247, 0.2);
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .feature-card h4 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .feature-card p {
-    color: var(--text-light);
-  }
-
-  /* Popular Routes */
-  .popular-routes {
-    background-color: var(--light-accent);
-    padding: 4rem 2rem;
-    border-radius: 12px;
-    margin-bottom: 4rem;
-  }
-
-  .popular-routes h2 {
-    text-align: center;
-  }
-
-  .popular-routes h2:after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .route-card {
-    background: white;
-    border-radius: 10px;
-    padding: 1.75rem;
-    transition: all 0.3s ease;
-    border-left: 4px solid var(--secondary-color);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    height: 100%;
-  }
-
-  .route-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-
-  .route-card h5 {
-    color: var(--primary-color);
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .route-card p {
-    color: var(--text-color);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
 
   /* Stats Section */
   .stats-card {
@@ -448,131 +331,212 @@
       margin-bottom: 1rem;
     }
   }
+/* Fix for content hidden under navbar */
+body {
+  padding-top: 80px; /* Adjust this value based on your navbar height */
+}
+
+/* Light Theme Enhancements for About Section */
+.about-section {
+  background-color: var(--light-color);
+  padding: 4rem 0;
+  margin-bottom: rem;
+}
+
+.route-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+  height: 100%;
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--secondary-color);
+}
+
+.route-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.route-card h5 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.route-card p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+/* Team Section Styling */
+.team-section {
+  background-color: #f9f9f9;
+  padding: 4rem 0;
+  border-radius: 12px;
+  margin: 3rem 0;
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  display: inline-block;
+}
+
+.section-header p.lead {
+  max-width: 700px;
+  margin: 0 auto;
+}
 </style>
 
-<div class="container">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <h1>Travel Smarter with NextRide 🚌</h1>
-      <p class="lead">Book bus tickets across India with just a few clicks.<br> Safe, reliable, and hassle-free!</p>
+
+
+  
+<!-- About Section -->
+<section class="about-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>About NextRide</h2>
+      <p class="lead">
+        NextRide is India's trusted partner for seamless bus ticket booking. Whether you're planning a weekend getaway, daily commute, or cross-state trip, we ensure convenience, comfort, and reliability—one ride at a time.
+      </p>
+    </div>
+   
+  </div>
+</section>
+
+<!-- Our Motto -->
+<section class="container my-5">
+  <div class="section-header">
+    <h2>Our Motto</h2>
+    <p class="lead text-center">“Travel Smarter. Travel Safer.”</p>
+  </div>
+  <p class="text-center">
+    Our mission is to make intercity travel a breeze by combining smart technology, user feedback, and exceptional service. Every bus ticket represents a promise—to get you where you’re going with ease, confidence, and comfort.
+  </p>
+  <p class="text-center">
+    Whether you're traveling solo or with loved ones, NextRide ensures your journey begins on the right foot, with real-time updates, reliable operators, and a platform built to serve.
+  </p>
+</section>
+
+
+<!-- Our Services -->
+<section class="container my-5">
+  <div class="section-header">
+    <h2>Our Services</h2>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="route-card">
+        <h5>Online Ticket Booking</h5>
+        <p>Effortless booking through web and mobile with secure payment options and instant confirmation.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="route-card">
+        <h5>Real-Time Bus Tracking</h5>
+        <p>Stay updated with live locations, expected arrival times, and smart alerts for delays or changes.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="route-card">
+        <h5>24/7 Customer Support</h5>
+        <p>Our dedicated support team is available round-the-clock to help you reschedule, cancel, or answer queries.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="route-card">
+        <h5>Exclusive Offers & Cashback</h5>
+        <p>Unlock the best deals, early-bird discounts, and loyalty rewards every time you travel with NextRide.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="route-card">
+        <h5>Operator Ratings & Reviews</h5>
+        <p>Read honest reviews and ratings to help you choose the most comfortable and punctual operators.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="route-card">
+        <h5>Multi-Language Support</h5>
+        <p>Navigate our platform in your preferred language—because accessibility should be effortless.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Our Team -->
+<section class="team-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Meet the Team</h2>
+    </div>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <!-- Team Member 1 -->
+      <div class="col">
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Amit Verma">
+            <div>
+              <h6>Abhishek Reji</h6>
+              <small>Founder & CEO</small>
+            </div>
+          </div>
+          <p>Driven by innovation and user experience, Amit envisioned a platform that puts travelers first.</p>
+        </div>
+      </div>
       
-      <!-- Search Form -->
-      <div class="search-card">
-        <form action="{% url 'bus_ticket' %}" method="GET">
-          <div class="row g-3">
-            <div class="col-md-3">
-              <label for="from" class="form-label">From</label>
-              <select class="form-select" id="from" name="from" required>
-                <option value="" selected disabled>Select City</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Hyderabad">Hyderabad</option>
-                <option value="Chennai">Chennai</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Jaipur">Jaipur</option>
-                <option value="Pune">Pune</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label for="to" class="form-label">To</label>
-              <select class="form-select" id="to" name="to" required>
-                <option value="" selected disabled>Select City</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Bangalore">Bangalore</option>
-                <option value="Hyderabad">Hyderabad</option>
-                <option value="Chennai">Chennai</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Jaipur">Jaipur</option>
-                <option value="Pune">Pune</option>
-              </select>
-            </div>
-            <div class="col-md-3">
-              <label for="date" class="form-label">Travel Date</label>
-              <input type="date" class="form-control" id="date" name="date" required min="{{ today|date:'Y-m-d' }}">
-            </div>
-            <div class="col-md-3 d-flex align-items-end">
-              <button type="submit" class="btn btn-primary w-100">
-                <i class="fas fa-search me-2"></i> Search Buses
-              </button>
+      <!-- Team Member 2 -->
+      <div class="col">
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://randomuser.me/api/portraits/women/21.jpg" alt="Sneha Rao">
+            <div>
+              <h6>Anlin Renny</h6>
+              <small>CTO</small>
             </div>
           </div>
-        </form>
+          <p>The tech brain behind the platform, Sneha ensures that NextRide runs faster and smarter every day.</p>
+        </div>
       </div>
-    </div>
-  </section>
+      
+      <!-- Team Member 3 -->
+      <div class="col">
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Ravi Menon">
+            <div>
+              <h6>Alin Alex</h6>
+              <small>Head of Customer Success</small>
+            </div>
+          </div>
+          <p>With a heart for helping, Ravi is focused on turning every query into a smooth solution.</p>
+        </div>
+      </div>
 
-  <!-- Features Section -->
-  <section class="mb-5">
-    <div class="row text-center">
-      <div class="col-md-4">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-bolt"></i>
+      <!-- Team Member 4 -->
+      <div class="col">
+        <div class="testimonial-card">
+          <div class="user-info">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Neha Krishnan">
+            <div>
+              <h6>Amala S</h6>
+              <small>Product Manager</small>
+            </div>
           </div>
-          <h4>Instant Booking</h4>
-          <p>Book your bus tickets in less than a minute with our streamlined process. Real-time availability and instant confirmation.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h4>Safe Travel</h4>
-          <p>Verified operators, sanitized buses, and emergency support. Live tracking and SOS features for complete peace of mind.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-percentage"></i>
-          </div>
-          <h4>Best Prices</h4>
-          <p>Guaranteed lowest prices with exclusive discounts. Price match promise and special deals for frequent travelers.</p>
+          <p>Neha bridges customer feedback and innovation, shaping features that make travel more intuitive and joyful.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Popular Routes -->
-  <section class="popular-routes">
-    <h2>Popular Bus Routes</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="route-card">
-          <h5>Delhi to Jaipur</h5>
-          <p>Starting from ₹499</p>
-          <p><small>Duration: 6-7 hours</small></p>
-          <a href="{% url 'bus_ticket' %}?from=Delhi&to=Jaipur" class="btn btn-outline-primary">
-            <i class="fas fa-ticket-alt me-2"></i> Book Now
-          </a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="route-card">
-          <h5>Mumbai to Pune</h5>
-          <p>Starting from ₹399</p>
-          <p><small>Duration: 3-4 hours</small></p>
-          <a href="{% url 'bus_ticket' %}?from=Mumbai&to=Pune" class="btn btn-outline-primary">
-            <i class="fas fa-ticket-alt me-2"></i> Book Now
-          </a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="route-card">
-          <h5>Bangalore to Chennai</h5>
-          <p>Starting from ₹599</p>
-          <p><small>Duration: 5-6 hours</small></p>
-          <a href="{% url 'bus_ticket' %}?from=Bangalore&to=Chennai" class="btn btn-outline-primary">
-            <i class="fas fa-ticket-alt me-2"></i> Book Now
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <!-- Stats Section -->
   <section class="my-5">
@@ -604,97 +568,8 @@
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section class="testimonial-section">
-    <h2 class="text-center mb-5">What Our Customers Say</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p>The easiest bus booking experience I've ever had. Got my ticket instantly and the journey was comfortable. The driver was professional and the bus was clean.</p>
-          <div class="user-info">
-            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Sharma">
-            <div>
-              <h6>Priya Sharma</h6>
-              <small>Frequent Traveler</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <p>Great discounts and reliable service. The app notifications about bus delays were really helpful. Customer support resolved my query in minutes.</p>
-          <div class="user-info">
-            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul Patel">
-            <div>
-              <h6>Rahul Patel</h6>
-              <small>Business Traveler</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="testimonial-card">
-          <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-          </div>
-          <p>Customer support helped me change my booking when my plans changed. Very responsive team! The bus was on time and had all promised amenities.</p>
-          <div class="user-info">
-            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ananya Gupta">
-            <div>
-              <h6>Ananya Gupta</h6>
-              <small>Student</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ 
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    {% if user.is_authenticated %}
-      <h2>Welcome back, {{ user.first_name|default:user.username }}!</h2>
-      <p class="lead">Ready for your next adventure? Book your tickets now and enjoy a comfortable journey.</p>
-      <div class="d-flex justify-content-center flex-wrap">
-        <a href="{% url 'bus_ticket' %}" class="btn btn-primary btn-lg mx-2 my-1">
-          <i class="fas fa-ticket-alt me-2"></i> Book a Ticket
-        </a>
-        <a href="{% url 'my_bookings' %}" class="btn btn-outline-primary btn-lg mx-2 my-1">
-          <i class="fas fa-clipboard-list me-2"></i> My Bookings
-        </a>
-      </div>
-    {% else %}
-      <h2>Join 1 Million+ Happy Travelers</h2>
-      <p class="lead">Sign up now to enjoy exclusive benefits, faster bookings, and special discounts.</p>
-      <div class="d-flex justify-content-center flex-wrap">
-        <a href="{% url 'register' %}" class="btn btn-primary btn-lg mx-2 my-1">
-          <i class="fas fa-user-plus me-2"></i> Register Now
-        </a>
-        <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg mx-2 my-1">
-          <i class="fas fa-sign-in-alt me-2"></i> Login
-        </a>
-      </div>
-    {% endif %}
-  </section>
-</div>
 
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

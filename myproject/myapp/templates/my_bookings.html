@@ -1,0 +1,8 @@
+<h2>My Bookings</h2>
+<ul>
+  {% for ticket in tickets %}
+    <li>{{ ticket.bus_name }} | Seat: {{ ticket.seat_number }} | {{ ticket.departure|date:"M d, Y H:i" }}</li>
+  {% empty %}
+    <li>No bookings found.</li>
+  {% endfor %}
+</ul>
